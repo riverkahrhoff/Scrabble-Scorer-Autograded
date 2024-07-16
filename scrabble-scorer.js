@@ -71,22 +71,23 @@ let scrabbleScorer = function(word) {
 	return letterPoints;
 };
 
-let scoringAlgorithms = [
+const scoringAlgorithms = [
   {
    name: "Simple Score",
    description: "Each letter is worth 1 point.",
-   scoringFunction: simpleScorer
+   scorerFunction: simpleScorer
  },
  {
    name: "Bonus Vowels",
    description: "Vowels are 3 pts, consonants are 1 pt.",
-   scoringFunction: vowelBonusScorer
+   scorerFunction: vowelBonusScorer
  },
  {
    name: "Scrabble",
    description: "The traditional scoring algorithm.",
-   scoringFunction: scrabbleScorer
- }];
+   scorerFunction: scrabbleScorer
+ }
+];
  
  function scorerPrompt() {
    scorerIndex = input.question(`
@@ -100,23 +101,22 @@ let scoringAlgorithms = [
      console.log("\nERROR: invalid input");
      scorerPrompt();
    } else {
-     return console.log(`\nScore for "${word}': ${scoringAlgorithms[scorerIndex].scoringFunction(word)}`);
+     return console.log(`\nScore for "${word}': ${scoringAlgorithms[scorerIndex].scorerFunction(word)}`);
    }
  }
  
 
 function transform(pointStruct) {
   let newPointStruct = {};
-  newPointStruct[" "] = 0;
   for (pointValue in pointStruct) {
     for (let i = 0; i < pointStruct[pointValue].length; i++) {
-      let newKey = String(pointStruct[pointValue][i].toLowerCase());
+      let newKey = pointStruct[pointValue][i].toLowerCase();
       newPointStruct[newKey] = Number(pointValue);
     }
   }
   return newPointStruct;
 }
-
+console.log(transform(oldPointStructure));
 
 function runProgram() {
    initialPrompt();
