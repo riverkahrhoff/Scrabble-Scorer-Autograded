@@ -116,7 +116,6 @@ function transform(pointStruct) {
   }
   return newPointStruct;
 }
-console.log(transform(oldPointStructure));
 
 function runProgram() {
    initialPrompt();
