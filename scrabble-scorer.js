@@ -45,6 +45,7 @@ let simpleScorer = function(word) {
 
 
 let vowelBonusScorer = function(word) {
+  word = word.toLowerCase()
    let vowels = ["a", "e", "i", "o", "u"]
    let score = 0
    for (i = 0; i < word.length; i++) {
